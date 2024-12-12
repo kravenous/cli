@@ -1,0 +1,25 @@
+name: Rust CI
+
+on:
+  push:
+    branches:
+      - main  # This means it runs when you push to the main branch
+  pull_request:
+    branches:
+      - main  # This means it also runs when you open a pull request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # GitHub Actions will run this on a Linux server
+
+    steps:
+    - name: Check out the code
+      uses: actions/checkout@v2  # This gets your code
+
+    - name: Set up Rust
+      uses: actions/setup-rust@v1  # This installs Rust and Cargo
+
+    - name: Build and test the code
+      run: |
+        cargo build --release  # Builds the project
+        cargo test  # Runs tests
